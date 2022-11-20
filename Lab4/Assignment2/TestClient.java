@@ -1,8 +1,9 @@
 package Lab4.Assignment2;
 
+import Lab4.Assignment1.SearchInterface;
+
 import java.io.File;
 import java.util.Scanner;
-import Lab4.Assignment1.SearchInterface;
 
 public class TestClient
 {
@@ -11,9 +12,10 @@ public class TestClient
     public static int x;
     public static int y;
     public static SymbolDigraph symbolGraph;
+
     public static void main(String[] args) throws Exception
     {
-        File text = new File("C:\\Users\\Silop\\Desktop\\ID1020Assignments\\Lab4\\Assignment1\\Database.txt");
+        File text = new File(args[0]);
         String delim = " ";
 
         symbolGraph = new SymbolDigraph(text, delim);
@@ -36,18 +38,17 @@ public class TestClient
 
     public static void printSearch(SearchInterface dfp, int y)
     {
-        if(dfp.hasPathTo(y)) {
+        if (dfp.hasPathTo(y)) {
             System.out.print(source + " to " + destination + ": ");
-            for(int v : dfp.pathTo(y)) {
-                if(v == x) {
+            for (int v : dfp.pathTo(y)) {
+                if (v == x) {
                     System.out.print(symbolGraph.name(v));
                 } else {
                     System.out.print("-" + symbolGraph.name(v));
                 }
             }
             System.out.println();
-        }
-        else {
+        } else {
             System.out.println("There exists no such path");
         }
     }

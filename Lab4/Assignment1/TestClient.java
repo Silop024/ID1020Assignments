@@ -10,9 +10,10 @@ public class TestClient
     public static int x;
     public static int y;
     public static SymbolGraph symbolGraph;
+
     public static void main(String[] args) throws Exception
     {
-        File text = new File("C:\\Users\\Silop\\Desktop\\ID1020Assignments\\Lab4\\Assignment1\\Database.txt");
+        File text = new File(args[0]);
         String delim = " ";
 
         symbolGraph = new SymbolGraph(text, delim);
@@ -38,8 +39,7 @@ public class TestClient
 
         in.close();
 
-        switch(ans)
-        {
+        switch (ans) {
             case 3:
                 printSearch(deapthFirstPath, y);
             case 2:
@@ -54,18 +54,17 @@ public class TestClient
 
     public static void printSearch(SearchInterface dfp, int y)
     {
-        if(dfp.hasPathTo(y)) {
+        if (dfp.hasPathTo(y)) {
             System.out.print(source + " to " + destination + ": ");
-            for(int v : dfp.pathTo(y)) {
-                if(v == x) {
+            for (int v : dfp.pathTo(y)) {
+                if (v == x) {
                     System.out.print(symbolGraph.name(v));
                 } else {
                     System.out.print("-" + symbolGraph.name(v));
                 }
             }
             System.out.println();
-        }
-        else {
+        } else {
             System.out.println("There exists no such path");
         }
     }
